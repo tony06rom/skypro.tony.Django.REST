@@ -7,15 +7,15 @@ class CustomUserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
         if not email:
-            raise ValueError('Email обязателен')
+            raise ValueError("Email обязателен")
         user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
         user.save()
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
         return self.create_user(email, password, **extra_fields)
 
 
@@ -26,7 +26,9 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=50, verbose_name="Фамилия", help_text="Введите фамилию")
     phone_number = models.CharField(max_length=50, verbose_name="Номер телефона", help_text="Введите телефон")
     city = models.CharField(max_length=50, verbose_name="Город", help_text="Ваш город")
-    avatar = models.ImageField(upload_to="avatars/", null=True, blank=True, verbose_name="Аватар", help_text="Загрузите аватар")
+    avatar = models.ImageField(
+        upload_to="avatars/", null=True, blank=True, verbose_name="Аватар", help_text="Загрузите аватар"
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name", "phone_number", "city"]

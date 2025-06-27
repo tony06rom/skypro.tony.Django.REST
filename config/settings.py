@@ -1,14 +1,8 @@
 import os
 from pathlib import Path
 
-from django.conf.global_settings import (
-    AUTH_USER_MODEL,
-    LOGIN_REDIRECT_URL,
-    LOGOUT_REDIRECT_URL,
-    MEDIA_ROOT,
-    MEDIA_URL,
-    STATICFILES_DIRS,
-)
+from django.conf.global_settings import (AUTH_USER_MODEL, LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL, MEDIA_ROOT,
+                                         MEDIA_URL, STATICFILES_DIRS)
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -40,9 +34,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'rest_framework',
-    'lms',
-    'users',
+    "rest_framework",
+    "lms",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -144,14 +138,14 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS")
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
-SERVER_EMAIL = EMAIL_HOST_USER
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# SERVER_EMAIL = EMAIL_HOST_USER
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-CACHE_ENABLED = True
-if CACHE_ENABLED:
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-            'LOCATION': 'redis://127.0.0.1:6379/1',
-        }
-    }
+# CACHE_ENABLED = True
+# if CACHE_ENABLED:
+#     CACHES = {
+#         "default": {
+#             "BACKEND": "django.core.cache.backends.redis.RedisCache",
+#             "LOCATION": "redis://127.0.0.1:6379/1",
+#         }
+#     }
