@@ -26,3 +26,10 @@ SerializerMethodField()
 
 * Дополнительное задание
 Для профиля пользователя сделайте вывод истории платежей, расширив сериализатор для вывода списка платежей
+
+
+python -Xutf8 manage.py dumpdata lms.Course  --output course_fixture.json --indent 4
+python -Xutf8 manage.py dumpdata lms.Lesson --output lesson_fixture.json --indent 4
+python -Xutf8 manage.py dumpdata lms.User --output user_fixture.json --indent 4
+python -Xutf8 manage.py dumpdata lms.Paments --output payments_fixture.json --indent 4
+python manage.py loaddata lms_fixture.json --format json

@@ -1,0 +1,79 @@
+[
+{
+    "model": "lms.lesson",
+    "pk": 1,
+    "fields": {
+        "title": "Тестовый урок",
+        "description": "Урок без курса",
+        "preview": "",
+        "video_url": null,
+        "course": null
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 3,
+    "fields": {
+        "title": "Специализация",
+        "description": "Решение по трудоустройству",
+        "preview": "",
+        "video_url": null,
+        "course": 4
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 4,
+    "fields": {
+        "title": "OOP",
+        "description": "Объектно ориентированное программирование",
+        "preview": "",
+        "video_url": null,
+        "course": 5
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 5,
+    "fields": {
+        "title": "Библиотеки Python",
+        "description": "Изучение основных библиотек и инструментов",
+        "preview": "",
+        "video_url": null,
+        "course": 5
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 6,
+    "fields": {
+        "title": "Работа с БД",
+        "description": "Интеграция проектов с PostgreSQL",
+        "preview": "",
+        "video_url": null,
+        "course": 5
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 7,
+    "fields": {
+        "title": "Django",
+        "description": "Изучение framework для Python",
+        "preview": "",
+        "video_url": null,
+        "course": 5
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 8,
+    "fields": {
+        "title": "Дипломный проект",
+        "description": "Подготовка проекта для защиты диплома",
+        "preview": "",
+        "video_url": null,
+        "course": 4
+    }
+}
+]

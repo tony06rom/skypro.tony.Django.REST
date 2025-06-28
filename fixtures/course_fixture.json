@@ -1,0 +1,29 @@
+[
+{
+    "model": "lms.course",
+    "pk": 3,
+    "fields": {
+        "title": "Python-test",
+        "preview": "previews/courses/Без_названия.jpg",
+        "description": "Python course"
+    }
+},
+{
+    "model": "lms.course",
+    "pk": 4,
+    "fields": {
+        "title": "SkyPro",
+        "preview": "",
+        "description": "Платформа обучения"
+    }
+},
+{
+    "model": "lms.course",
+    "pk": 5,
+    "fields": {
+        "title": "Python-разработчик",
+        "preview": "",
+        "description": "Разработка на Python"
+    }
+}
+]
