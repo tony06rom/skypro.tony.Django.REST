@@ -69,9 +69,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
-}
+REST_FRAMEWORK = {"DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]}
 
 # Database
 
@@ -124,8 +122,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Dynamic files (Images)
-MEDIA_URL = "data/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "data/media")
+#MEDIA_URL = "data/media/"
+#MEDIA_ROOT = os.path.join(BASE_DIR, "data/media")
 
 AUTH_USER_MODEL = "users.User"
 
