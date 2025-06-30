@@ -2,6 +2,8 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from lms.models import Course, Lesson
+
 
 class CustomUserManager(BaseUserManager):
 
@@ -36,8 +38,31 @@ class User(AbstractUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return {self.email}
+        return self.email
 
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
+
+
+class Payments(models.Model):
+
+    PAYMENT_METHOD_CHOICES = [
+        ("card", "Карта"),
+        ("cache", "Наличные"),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    payment_date = models.DateTimeField(auto_now_add=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True, blank=True)
+    payment_amount = models.IntegerField(default=0)
+    payment_method = models.CharField(choices=PAYMENT_METHOD_CHOICES)
+
+    def __str__(self):
+        return f"{self.user} | {self.payment_amount}"
+
+    class Meta:
+        verbose_name = "Платеж"
+        verbose_name_plural = "Платежи"
+        ordering = ["payment_date"]
