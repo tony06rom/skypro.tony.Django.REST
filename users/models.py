@@ -45,6 +45,19 @@ class User(AbstractUser):
         verbose_name_plural = "Пользователи"
 
 
+class Moderator(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='moderator_profile', verbose_name='Пользователь')
+    can_edit_courses = models.BooleanField(default=True, verbose_name='Может редактировать курсы')
+    can_edit_lessons = models.BooleanField(default=True, verbose_name='Может редактировать уроки')
+
+    def __str__(self):
+        return f"Модератор: {self.user.email}"
+
+    class Meta:
+        verbose_name = 'Модератор'
+        verbose_name_plural = 'Модераторы'
+
+
 class Payments(models.Model):
 
     PAYMENT_METHOD_CHOICES = [
