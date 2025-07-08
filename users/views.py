@@ -14,7 +14,7 @@ class UserViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
 
-class UserCreatePIView(CreateAPIView):
+class UserCreateAPIView(CreateAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = (AllowAny,)

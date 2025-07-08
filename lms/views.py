@@ -5,13 +5,17 @@ from rest_framework.viewsets import ModelViewSet
 
 from lms.models import Course, Lesson
 from lms.serializers import CourseSerializer, LessonSerializer
-from users.permissions import IsModeratorOrReadOnly
 
 
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsAuthenticated, IsModeratorOrReadOnly]
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        course = serializer.save()
+        course.owner = self.request.user
+        course.save()
 
     def create(self, request, *args, **kwargs):
         if hasattr(request.user, 'moderator_profile'):
@@ -28,6 +32,11 @@ class LessonListAPIView(ListAPIView):
 class LessonCreateAPIView(CreateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
+
+    def perform_create(self, serializer):
+        lesson = serializer.save()
+        lesson.owner = self.request.user
+        lesson.save()
 
 
 class LessonRetrieveAPIView(RetrieveAPIView):
