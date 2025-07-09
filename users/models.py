@@ -2,8 +2,6 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from lms.models import Course, Lesson
-
 
 class CustomUserManager(BaseUserManager):
 
@@ -54,8 +52,8 @@ class Payments(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     payment_date = models.DateTimeField(auto_now_add=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True, blank=True)
+    course = models.ForeignKey("lms.Course", on_delete=models.CASCADE, null=True, blank=True)
+    lesson = models.ForeignKey("lms.Lesson", on_delete=models.CASCADE, null=True, blank=True)
     payment_amount = models.IntegerField(default=0)
     payment_method = models.CharField(choices=PAYMENT_METHOD_CHOICES)
 
