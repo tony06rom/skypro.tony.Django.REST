@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from lms.models import Course, Lesson, Subscription
+from lms.pagination import CustomPagination
 from lms.serializers import CourseSerializer, LessonSerializer
 from lms.permissions import IsModerator, IsOwner, IsNotModerator
 
@@ -15,6 +16,7 @@ class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = CustomPagination
 
     def perform_create(self, serializer):
         course = serializer.save()
@@ -35,6 +37,7 @@ class LessonListAPIView(ListAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (IsAuthenticated, IsOwner)
+    pagination_class = CustomPagination
 
 
 class LessonCreateAPIView(CreateAPIView):
