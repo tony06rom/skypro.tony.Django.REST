@@ -7,5 +7,6 @@ class UrlValidator:
         self.url = field
 
     def __call__(self, fields):
-        if not 'youtube.com' in fields['video_url']:
-            raise ValidationError('Разрешены только ссылки на YouTube')
+        if fields.get("video_url"):
+            if "youtube.com" not in fields["video_url"]:
+                raise ValidationError("Разрешены только ссылки на YouTube")

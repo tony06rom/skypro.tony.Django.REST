@@ -7,9 +7,8 @@ from rest_framework.viewsets import ModelViewSet
 
 from lms.models import Course, Lesson, Subscription
 from lms.pagination import CustomPagination
+from lms.permissions import IsModerator, IsNotModerator, IsOwner
 from lms.serializers import CourseSerializer, LessonSerializer
-from lms.permissions import IsModerator, IsOwner, IsNotModerator
-
 
 
 class CourseViewSet(ModelViewSet):
@@ -68,6 +67,7 @@ class LessonDestroyAPIView(DestroyAPIView):
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated, IsOwner | IsNotModerator]
 
+
 class CourseSubscribeAPIView(APIView):
     def post(self, request, pk):
         user = request.user
@@ -77,7 +77,7 @@ class CourseSubscribeAPIView(APIView):
         except Subscription.DoesNotExist:
             sub = Subscription.objects.create(user=user, course=course_item)
             sub.save()
-            return Response({'message': 'подписка активирована'}, status=status.HTTP_201_CREATED)
+            return Response({"message": "подписка активирована"}, status=status.HTTP_201_CREATED)
         else:
             subs_item.delete()
-            return Response({'message' : 'подписка деактивирована'}, status=status.HTTP_201_CREATED)
+            return Response({"message": "подписка деактивирована"}, status=status.HTTP_201_CREATED)

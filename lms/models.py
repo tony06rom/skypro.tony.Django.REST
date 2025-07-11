@@ -13,7 +13,9 @@ class Course(models.Model):
         help_text="Добавьте изображение к курсу",
     )
     description = models.TextField(verbose_name="Описание", blank=True, null=True, help_text="Добавьте описание курса")
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Владелец", help_text="Владелец курса")
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Владелец", help_text="Владелец курса"
+    )
 
     def __str__(self):
         return self.title
@@ -38,7 +40,9 @@ class Lesson(models.Model):
         verbose_name="Ссылка на видео", blank=True, null=True, help_text="Добавьте ссылку на видео"
     )
     course = models.ForeignKey(Course, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Курс")
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Владелец", help_text="Владелец урока")
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Владелец", help_text="Владелец урока"
+    )
 
     def __str__(self):
         return self.title
@@ -54,9 +58,9 @@ class Subscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Курс: {self.course} | Пользователь: {self.user}'
+        return f"Курс: {self.course} | Пользователь: {self.user}"
 
     class Meta:
-        verbose_name = 'Подписка'
-        verbose_name_plural = 'Подписки'
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"
         ordering = ["course"]
