@@ -21,6 +21,9 @@ psycopg2-binary = "^2.9.10"
 django-filter = "^25.1"
 djangorestframework-simplejwt = "^5.5.0"
 coverage = "^7.9.2"
+drf-yasg = "^1.21.10"
+django-cors-headers = "^4.7.0"
+drf-spectacular = "^0.28.0"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = "^7.2.0"
