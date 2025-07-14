@@ -31,6 +31,10 @@ class CourseViewSet(ModelViewSet):
             self.permission_classes = (IsNotModerator | IsOwner,)
         return super().get_permissions()
 
+    def get_course(self):
+        course_id = self.kwargs.get("pk")
+        return Course.objects.get(pk=course_id)
+
 
 class LessonListAPIView(ListAPIView):
     queryset = Lesson.objects.all()

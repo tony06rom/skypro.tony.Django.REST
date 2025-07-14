@@ -50,12 +50,25 @@ class Payments(models.Model):
         ("cache", "Наличные"),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Пользователь",
+        help_text="Укажите пользователя",
+    )
     payment_date = models.DateTimeField(auto_now_add=True)
     course = models.ForeignKey("lms.Course", on_delete=models.CASCADE, null=True, blank=True)
     lesson = models.ForeignKey("lms.Lesson", on_delete=models.CASCADE, null=True, blank=True)
     payment_amount = models.IntegerField(default=0)
     payment_method = models.CharField(choices=PAYMENT_METHOD_CHOICES)
+    link = models.URLField(
+        max_length=255, null=True, blank=True, verbose_name="Ссылка на оплату", help_text="Укажите ссылку на оплату"
+    )
+    session_id = models.CharField(
+        max_length=255, null=True, blank=True, verbose_name="ID сессии", help_text="Укажите ID сессии"
+    )
 
     def __str__(self):
         return f"{self.user} | {self.payment_amount}"
