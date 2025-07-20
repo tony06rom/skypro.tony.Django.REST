@@ -5,10 +5,9 @@ from config.settings import STRIPE_API_KEY
 stripe.api_key = STRIPE_API_KEY
 
 
-def create_stripe_price(course):
-    price = stripe.Price.create(currency="USD", unit_amount=500, product_data={"name": course.title, "id": course.id})
+def create_stripe_price(payment):
+    price = stripe.Price.create(currency="RUB", unit_amount=payment.payment_amount*100,  product_data={"name": payment.course.title, "id": payment.course.id})
     return price
-
 
 def create_stripe_session(price):
     session = stripe.checkout.Session.create(
