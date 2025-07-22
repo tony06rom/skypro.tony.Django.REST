@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "drf_yasg",
     "corsheaders",
-    "django_celery_beat"
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
@@ -182,8 +182,8 @@ CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CELERY_BEAT_SCHEDULE = {
-    'last_login': {
-        'task': 'users.tasks.last_login',
-        'schedule': timedelta(minutes=1),
+    "last_login": {
+        "task": "users.tasks.last_login",
+        "schedule": timedelta(days=1),
     },
 }
