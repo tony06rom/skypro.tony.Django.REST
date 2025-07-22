@@ -16,6 +16,7 @@ class Course(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Владелец", help_text="Владелец курса"
     )
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title

@@ -26,6 +26,9 @@ django-cors-headers = "^4.7.0"
 drf-spectacular = "^0.28.0"
 stripe = "^12.3.0"
 forex-python = "^1.9.2"
+celery = "^5.5.3"
+eventlet = "^0.40.1"
+django-celery-beat = "^2.8.1"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = "^7.2.0"
