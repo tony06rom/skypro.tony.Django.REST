@@ -9,6 +9,7 @@ from lms.models import Course, Lesson, Subscription
 from lms.pagination import CustomPagination
 from lms.permissions import IsModerator, IsNotModerator, IsOwner
 from lms.serializers import CourseSerializer, LessonSerializer
+from lms.tasks import send_mail_update_course
 
 
 class CourseViewSet(ModelViewSet):
@@ -34,6 +35,15 @@ class CourseViewSet(ModelViewSet):
     def get_course(self):
         course_id = self.kwargs.get("pk")
         return Course.objects.get(pk=course_id)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            send_mail_update_course.delay(instance.pk)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LessonListAPIView(ListAPIView):

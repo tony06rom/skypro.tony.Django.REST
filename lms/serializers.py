@@ -19,10 +19,6 @@ class CourseSerializer(serializers.ModelSerializer):
     def get_lesson_count(self, instance):
         return instance.lesson_set.count()
 
-    # def get_subscription(self, instance):
-    #     sub = Subscription.objects.get(course=instance)
-    #     return sub.user == self.context["request"].user
-
     def get_subscription(self, instance):
         try:
             sub = Subscription.objects.get(course=instance)
